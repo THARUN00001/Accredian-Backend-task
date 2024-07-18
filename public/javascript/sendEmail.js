@@ -1,6 +1,7 @@
 const ejs = require("ejs");
 const nodemailer = require("nodemailer");
-function renderFile(templatePath, data, refer) {
+const templatePath = "../public/email-templet.ejs";
+function renderFile( data, refer) {
 
 
     let transporter = nodemailer.createTransport({

@@ -74,14 +74,14 @@ async function addReferals(refer) {
             });
         }
 
-        const templatePath = "../public/email-templet.ejs";
+  
 
         const data = {
             refereeName: refer.RefereeUsername,
             referrerName: refer.ReferrerUsername,
         }
 
-        renderFile(templatePath, data, refer)
+        renderFile( data, refer)
 
     } catch (err) {
         console.log(err);
