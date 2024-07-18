@@ -1,6 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
-var referRoute = require("../routes/refer")
+var referRoute = require("./routes/refer")
 var { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const env = require('dotenv')

@@ -1,6 +1,6 @@
 const ejs = require("ejs");
 const nodemailer = require("nodemailer");
-const templatePath = "../email-templet.ejs";
+const templatePath = "public/email-templet.ejs";
 function renderFile( data, refer) {
 
 
