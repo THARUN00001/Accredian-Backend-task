@@ -5,8 +5,8 @@ var router = express.Router();
 
 const path = require("path");
 
-const fs = require("fs")
-const template = fs.readFileSync("../public/email-templet.ejs", "utf8");
+const fs = require("fs ")
+
 const ejs = require("ejs");
 var app = express();
 app.set('view engine', 'ejs');
