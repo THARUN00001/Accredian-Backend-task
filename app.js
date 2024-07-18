@@ -30,7 +30,7 @@ app.use('/', referRoute);
 
 
 
-app.listen(process.env.PORT, "localhost")
+app.listen(process.env.PORT || 4000)
 app.on('listening', () => {
   console.log("listening on port"+process.env.PORT);
 })
