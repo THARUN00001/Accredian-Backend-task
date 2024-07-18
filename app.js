@@ -5,7 +5,7 @@ var { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const env = require('dotenv')
 env.config();
-
+const port = process.env.PORT || 4000;
 var app = express();
 var cors = require('cors')
 
@@ -30,9 +30,8 @@ app.use('/', referRoute);
 
 
 
-app.listen(process.env.PORT || 4000)
-app.on('listening', () => {
-  console.log("listening on port"+process.env.PORT);
-})
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 module.exports = app;
