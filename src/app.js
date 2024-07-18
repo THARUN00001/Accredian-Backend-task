@@ -4,7 +4,7 @@ var referRoute = require("../routes/refer")
 var { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const env = require('dotenv')
-
+env.config();
 
 var app = express();
 var cors = require('cors')
