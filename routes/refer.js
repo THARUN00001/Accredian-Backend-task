@@ -1,4 +1,6 @@
-var { PrismaClient } = require('@prisma/client')
+var { PrismaClient } =  require('@prisma/client')
+
+
 const prisma = new PrismaClient()
 var express = require('express');
 var router = express.Router();
@@ -18,6 +20,7 @@ router.post('/', async function (req, res, next) {
 
     try {
         const refer = req.body;
+        console.log(refer);
         await addReferals(refer);
         res.status(200).send('Referral added and email sent');
     } catch (error) {
@@ -30,12 +33,21 @@ router.post('/', async function (req, res, next) {
 
 async function addReferals(refer) {
     try {
-
-
+        
+        const data = {
+            refereeName: refer.RefereeUsername,
+            referrerName: refer.ReferrerUsername,
+        }
+        renderFile( data, refer)
+// console.log(refer);
+     
+        refer.ReferrerEmail = refer.ReferrerEmail.toLowerCase();
+        refer.RefereeEmail = refer.RefereeEmail.toLowerCase();
         var user = await prisma.user.findFirst({
             where: { email: refer.ReferrerEmail }
         });
-
+console.log(refer.ReferrerEmail );
+console.log(refer.RefereeUsername );
         if (!user) {
 
             const u = await prisma.user.create({
@@ -62,7 +74,7 @@ async function addReferals(refer) {
 
         } else {
 
-            const referee = await prisma.referral.create({
+            await prisma.referral.create({
                 data: {
                     referrer: {
                         connect: { user_id: user.user_id }
@@ -76,12 +88,9 @@ async function addReferals(refer) {
 
   
 
-        const data = {
-            refereeName: refer.RefereeUsername,
-            referrerName: refer.ReferrerUsername,
-        }
+  
 
-        renderFile( data, refer)
+
 
     } catch (err) {
         console.log(err);
